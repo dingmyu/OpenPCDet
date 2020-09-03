@@ -66,6 +66,24 @@ def main():
         )
         dist_train = True
 
+    if args.extra_tag:
+        tag, input_channels, block1, block2, block3, block4, last_channel = args.extra_tag.split('-')
+        input_channels = [int(item) for item in input_channels.split('_')]
+        block1 = [int(item) for item in block1.split('_')]
+        block2 = [int(item) for item in block2.split('_')]
+        block3 = [int(item) for item in block3.split('_')]
+        block4 = [int(item) for item in block4.split('_')]
+        last_channel = int(last_channel)
+
+        inverted_residual_setting = []
+        for item in [block1, block2, block3, block4]:
+            for _ in range(item[0]):
+                inverted_residual_setting.append([item[1], item[2:-int(len(item)/2-1)], item[-int(len(item)/2-1):]])
+
+        cfg.MODEL.BACKBONE_2D.input_channel = input_channels
+        cfg.MODEL.BACKBONE_2D.inverted_residual_setting = inverted_residual_setting
+        cfg.MODEL.BACKBONE_2D.last_channel = last_channel
+
     if args.batch_size is None:
         args.batch_size = cfg.OPTIMIZATION.BATCH_SIZE_PER_GPU
     else:

@@ -137,7 +137,7 @@ def checkpoint_state(model=None, optimizer=None, epoch=None, it=None):
 
 
 def save_checkpoint(state, filename='checkpoint'):
-    if False and 'optimizer_state' in state:
+    if 'optimizer_state' in state:
         optimizer_state = state['optimizer_state']
         state.pop('optimizer_state', None)
         optimizer_filename = '{}_optim.pth'.format(filename)

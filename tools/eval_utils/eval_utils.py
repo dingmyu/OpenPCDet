@@ -116,6 +116,9 @@ def eval_one_epoch(cfg, model, dataloader, epoch_id, logger, dist_test=False, sa
     logger.info(result_str)
     ret_dict.update(result_dict)
 
+    with open(result_dir / 'ap_dict.pkl', 'wb') as f:
+        pickle.dump(ret_dict, f)
+
     logger.info('Result is save to %s' % result_dir)
     logger.info('****************Evaluation done.*****************')
     return ret_dict

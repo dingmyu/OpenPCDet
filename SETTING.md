@@ -40,6 +40,8 @@ export PYTHONPATH=/mnt/lustre/dingmingyu/2020/OpenPCDet:$PYTHONPATH
 export LD_LIBRARY_PATH=/mnt/lustre/share_data/LOD/shishaoshuai/anaconda3/lib/python3.7/site-packages/spconv/:$LD_LIBRARY_PATH
 export NUMBAPRO_NVVM=/mnt/lustre/share/cuda-9.0/nvvm/lib64/libnvvm.so
 export NUMBAPRO_LIBDEVICE=/mnt/lustre/share/cuda-9.0/nvvm/libdevice
+export PATH=/mnt/lustre/share/cuda-9.0/bin:$PATH
+export LD_LIBRARY_PATH=/mnt/lustre/share/cuda-9.0/lib64/:$LD_LIBRARY_PATH
 
 
 srun -p pat_moon -c24  python setup.py develop --user
